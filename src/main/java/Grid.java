@@ -12,8 +12,8 @@ public class Grid {
     }
 
     public Light[][] turnOnLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
-        for (int row = startPosition[0]; row < finishPosition[0]; row++) {
-            for (int column = startPosition[1]; column < finishPosition[1]; column++) {
+        for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
+            for (int column = startPosition[1]; column <= finishPosition[1]; column++) {
                 matrix[row][column].turnOn();
             }
         }
@@ -21,8 +21,8 @@ public class Grid {
     }
 
     public Light[][] turnOffLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
-        for (int row = startPosition[0]; row < finishPosition[0]; row++) {
-            for (int column = startPosition[1]; column < finishPosition[1]; column++) {
+        for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
+            for (int column = startPosition[1]; column <= finishPosition[1]; column++) {
                 matrix[row][column].turnOff();
             }
         }
@@ -30,11 +30,23 @@ public class Grid {
     }
 
     public Light[][] toggleLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
-        for (int row = startPosition[0]; row < finishPosition[0]; row++) {
-            for (int column = startPosition[1]; column < finishPosition[1]; column++) {
+        for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
+            for (int column = startPosition[1]; column <= finishPosition[1]; column++) {
                 matrix[row][column].toggle();
             }
         }
         return matrix;
+    }
+
+    public int countLightsOn(Light[][] matrix) {
+        int lightsOn = 0;
+        for (Light[] listOfLights : matrix) {
+            for (Light light : listOfLights) {
+                if (light.isOn) {
+                    lightsOn++;
+                }
+            }
+        }
+        return lightsOn;
     }
 }

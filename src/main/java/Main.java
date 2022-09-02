@@ -47,17 +47,10 @@ public class Main {
         // toggle 831,394 through 904,860
         int[] startPoint8 = {831,394};
         int[] finishPoint8 = {904,860};
-        matrixOfLights = grid.turnOnLights(matrixOfLights, startPoint8, finishPoint8);
+        matrixOfLights = grid.toggleLights(matrixOfLights, startPoint8, finishPoint8);
 
-        int lightsOn = 0;
-        for (int row = 0; row < matrixOfLights.length; row++) {
-            for (int column = 0; column < matrixOfLights[row].length; column++) {
-                if (matrixOfLights[row][column].isOn) {
-                    lightsOn++;
-                }
-            }
-        }
 
+        int lightsOn = grid.countLightsOn(matrixOfLights);
         System.out.println(lightsOn +" lights are on");
 
     }
