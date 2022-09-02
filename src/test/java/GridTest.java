@@ -32,7 +32,7 @@ public class GridTest {
         Grid grid = new Grid();
         Light[][] actualGrid = grid.create(2, 2);
         int[] startPoint = {0,0};
-        int[] finishPoint = {2,2};
+        int[] finishPoint = {1,1};
         actualGrid = grid.turnOnLights(actualGrid, startPoint, finishPoint);
         Light[][] expectedGrid = new Light[2][2];
         for (int row = 0; row < expectedGrid.length; row++) {
@@ -62,9 +62,19 @@ public class GridTest {
             }
         }
 
-        for (int row = startPoint[0]; row < finishPoint[0]; row++) {
-            for (int column = startPoint[1]; column < finishPoint[1]; column++) {
-                expectedGrid[row][column].turnOn();
+        for (int row = startPoint[0]; row <= finishPoint[0]; row++) {
+            if (row == startPoint[0] && finishPoint[0] != row){
+                for (int column = startPoint[1]; column < expectedGrid[row].length; column++) {
+                    expectedGrid[row][column].turnOn();
+                }
+            } else if (row == finishPoint[0]){
+                for (int column = 0; column <= finishPoint[1]; column++) {
+                    expectedGrid[row][column].turnOn();
+                }
+            } else {
+                for (int column = 0; column < expectedGrid[row].length; column++) {
+                    expectedGrid[row][column].turnOn();
+                }
             }
         }
 
@@ -76,7 +86,7 @@ public class GridTest {
         Grid grid = new Grid();
         Light[][] actualGrid = grid.create(10, 10);
         int[] startPointOn = {0,0};
-        int[] finishPointOn = {10,10};
+        int[] finishPointOn = {9,9};
         grid.turnOnLights(actualGrid, startPointOn, finishPointOn);
 
         int[] startPointOff = {1,2};
@@ -92,9 +102,19 @@ public class GridTest {
             }
         }
 
-        for (int row = startPointOff[1]; row < finishPointOff[0]; row++) {
-            for (int column = startPointOff[1]; column < finishPointOff[1]; column++) {
-                expectedGrid[row][column].turnOff();
+        for (int row = startPointOff[0]; row <= finishPointOff[0]; row++) {
+            if (row == startPointOff[0] && finishPointOff[0] != row){
+                for (int column = startPointOff[1]; column < expectedGrid[row].length; column++) {
+                    expectedGrid[row][column].turnOff();
+                }
+            } else if (row == finishPointOff[0]){
+                for (int column = 0; column <= finishPointOff[1]; column++) {
+                    expectedGrid[row][column].turnOff();
+                }
+            } else {
+                for (int column = 0; column < expectedGrid[row].length; column++) {
+                    expectedGrid[row][column].turnOff();
+                }
             }
         }
 
@@ -121,15 +141,35 @@ public class GridTest {
             }
         }
 
-        for (int row = startPointOn[1]; row < finishPointOn[0]; row++) {
-            for (int column = startPointOn[1]; column < finishPointOn[1]; column++) {
-                expectedGrid[row][column].turnOn();
+        for (int row = startPointOn[0]; row <= finishPointOn[0]; row++) {
+            if (row == startPointOn[0] && finishPointOn[0] != row){
+                for (int column = startPointOn[1]; column < expectedGrid[row].length; column++) {
+                    expectedGrid[row][column].turnOn();
+                }
+            } else if (row == finishPointOn[0]){
+                for (int column = 0; column <= finishPointOn[1]; column++) {
+                    expectedGrid[row][column].turnOn();
+                }
+            } else {
+                for (int column = 0; column < expectedGrid[row].length; column++) {
+                    expectedGrid[row][column].turnOn();
+                }
             }
         }
 
-        for (int row = startPointToggle[1]; row < finishPointToggle[0]; row++) {
-            for (int column = startPointToggle[1]; column < finishPointToggle[1]; column++) {
-                expectedGrid[row][column].toggle();
+        for (int row = startPointToggle[0]; row <= finishPointToggle[0]; row++) {
+            if (row == startPointToggle[0] && finishPointToggle[0] != row){
+                for (int column = startPointToggle[1]; column < expectedGrid[row].length; column++) {
+                    expectedGrid[row][column].toggle();
+                }
+            } else if (row == finishPointToggle[0]){
+                for (int column = 0; column <= finishPointToggle[1]; column++) {
+                    expectedGrid[row][column].toggle();
+                }
+            } else {
+                for (int column = 0; column < expectedGrid[row].length; column++) {
+                    expectedGrid[row][column].toggle();
+                }
             }
         }
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
