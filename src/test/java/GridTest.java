@@ -23,9 +23,9 @@ public class GridTest {
     void check_all_lights_in_grid_are_turned_on() {
         Grid grid = new Grid();
         Light[][] actualGrid = grid.create(2, 2);
-        int[] startPoint = {0,0};
-        int[] finishPoint = {1,1};
-        actualGrid = grid.turnOnLights(actualGrid, startPoint, finishPoint);
+        int[] startPosition = {0,0};
+        int[] finishPosition = {1,1};
+        actualGrid = grid.turnOnLights(actualGrid, startPosition, finishPosition);
         Light[][] expectedGrid = new Light[2][2];
         for (int row = 0; row < expectedGrid.length; row++) {
             for (int column = 0; column < expectedGrid[row].length; column++) {
@@ -42,9 +42,9 @@ public class GridTest {
     void check_that_only_certain_lights_are_on(){
         Grid grid = new Grid();
         Light[][] actualGrid = grid.create(10, 10);
-        int[] startPoint = {3,5};
-        int[] finishPoint = {4,7};
-        grid.turnOnLights(actualGrid, startPoint, finishPoint);
+        int[] startPosition = {3,5};
+        int[] finishPosition = {4,7};
+        grid.turnOnLights(actualGrid, startPosition, finishPosition);
 
         Light[][] expectedGrid = new Light[10][10];
         for (int row = 0; row < expectedGrid.length; row++) {
@@ -54,8 +54,8 @@ public class GridTest {
             }
         }
 
-        for (int row = startPoint[0]; row <= finishPoint[0]; row++) {
-            for (int column = startPoint[1]; column <= finishPoint[1]; column++) {
+        for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
+            for (int column = startPosition[1]; column <= finishPosition[1]; column++) {
                 expectedGrid[row][column].turnOn();
             }
         }
@@ -67,13 +67,13 @@ public class GridTest {
     void check_that_only_certain_lights_are_off() {
         Grid grid = new Grid();
         Light[][] actualGrid = grid.create(10, 10);
-        int[] startPointOn = {0,0};
-        int[] finishPointOn = {9,9};
-        grid.turnOnLights(actualGrid, startPointOn, finishPointOn);
+        int[] startPositionOn = {0,0};
+        int[] finishPositionOn = {9,9};
+        grid.turnOnLights(actualGrid, startPositionOn, finishPositionOn);
 
-        int[] startPointOff = {1,2};
-        int[] finishPointOff = {6,7};
-        grid.turnOffLights(actualGrid, startPointOff, finishPointOff);
+        int[] startPositionOff = {1,2};
+        int[] finishPositionOff = {6,7};
+        grid.turnOffLights(actualGrid, startPositionOff, finishPositionOff);
 
         Light[][] expectedGrid = new Light[10][10];
         for (int row = 0; row < expectedGrid.length; row++) {
@@ -84,8 +84,8 @@ public class GridTest {
             }
         }
 
-        for (int row = startPointOff[0]; row <= finishPointOff[0]; row++) {
-            for (int column = startPointOff[1]; column <= finishPointOff[1]; column++) {
+        for (int row = startPositionOff[0]; row <= finishPositionOff[0]; row++) {
+            for (int column = startPositionOff[1]; column <= finishPositionOff[1]; column++) {
                 expectedGrid[row][column].turnOff();
             }
         }
@@ -97,13 +97,13 @@ public class GridTest {
     void check_that_toggle_function_works_correctly() {
         Grid grid = new Grid();
         Light[][] actualGrid = grid.create(10, 10);
-        int[] startPointOn = {3,3};
-        int[] finishPointOn = {5,5};
-        grid.turnOnLights(actualGrid, startPointOn, finishPointOn);
+        int[] startPositionOn = {3,3};
+        int[] finishPositionOn = {5,5};
+        grid.turnOnLights(actualGrid, startPositionOn, finishPositionOn);
 
-        int[] startPointToggle = {2,2};
-        int[] finishPointToggle = {4,4};
-        grid.toggleLights(actualGrid, startPointToggle, finishPointToggle);
+        int[] startPositionToggle = {2,2};
+        int[] finishPositionToggle = {4,4};
+        grid.toggleLights(actualGrid, startPositionToggle, finishPositionToggle);
 
         Light[][] expectedGrid = new Light[10][10];
         for (int row = 0; row < expectedGrid.length; row++) {
@@ -113,14 +113,14 @@ public class GridTest {
             }
         }
 
-        for (int row = startPointOn[1]; row <= finishPointOn[0]; row++) {
-            for (int column = startPointOn[1]; column <= finishPointOn[1]; column++) {
+        for (int row = startPositionOn[1]; row <= finishPositionOn[0]; row++) {
+            for (int column = startPositionOn[1]; column <= finishPositionOn[1]; column++) {
                 expectedGrid[row][column].turnOn();
             }
         }
 
-        for (int row = startPointToggle[1]; row <= finishPointToggle[0]; row++) {
-            for (int column = startPointToggle[1]; column <= finishPointToggle[1]; column++) {
+        for (int row = startPositionToggle[1]; row <= finishPositionToggle[0]; row++) {
+            for (int column = startPositionToggle[1]; column <= finishPositionToggle[1]; column++) {
                 expectedGrid[row][column].toggle();
             }
         }
