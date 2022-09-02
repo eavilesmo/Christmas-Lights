@@ -45,22 +45,13 @@ public class Main {
         matrixOfLights = grid.toggleLights(matrixOfLights, startPosition7, finishPosition7);
 
         // toggle 831,394 through 904,860
-        int[] startPosition8 = {831,394};
-        int[] finishPosition8 = {904,860};
-        matrixOfLights = grid.turnOnLights(matrixOfLights, startPosition8, finishPosition8);
+        int[] startPoint8 = {831,394};
+        int[] finishPoint8 = {904,860};
+        matrixOfLights = grid.toggleLights(matrixOfLights, startPoint8, finishPoint8);
+
 
         int lightsOn = grid.countLightsOn(matrixOfLights);
-        System.out.println(lightsOn + " lights are on");
-
-        Light[][] nexMatrix = grid.create(10, 10);
-        int[] start = {1,3};
-        int[] finish = {3,6};
-        nexMatrix = grid.turnOnLights(nexMatrix, start, finish);
-        nexMatrix = grid.turnOffLights(nexMatrix, start, finish);
-        nexMatrix = grid.toggleLights(nexMatrix, start, finish);
-
-        int lightsOnTest = grid.countLightsOn(nexMatrix);
-        System.out.println(lightsOnTest + " lights are on");
+        System.out.println(lightsOn +" lights are on");
 
     }
 }
