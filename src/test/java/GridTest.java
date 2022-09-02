@@ -100,4 +100,38 @@ public class GridTest {
 
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
     }
+
+    @Test
+    void check_that_toggle_function_works_correctly() {
+        Grid grid = new Grid();
+        Light[][] actualGrid = grid.create(10, 10);
+        int[] startPointOn = {3,3};
+        int[] finishPointOn = {5,5};
+        grid.turnOnLights(actualGrid, startPointOn, finishPointOn);
+
+        int[] startPointToggle = {2,2};
+        int[] finishPointToggle = {4,4};
+        grid.toggleLights(actualGrid, startPointToggle, finishPointToggle);
+
+        Light[][] expectedGrid = new Light[10][10];
+        for (int row = 0; row < expectedGrid.length; row++) {
+            for (int column = 0; column < expectedGrid[row].length; column++) {
+                Light light = new Light();
+                expectedGrid[row][column] = light;
+            }
+        }
+
+        for (int row = startPointOn[1]; row < finishPointOn[0]; row++) {
+            for (int column = startPointOn[1]; column < finishPointOn[1]; column++) {
+                expectedGrid[row][column].turnOn();
+            }
+        }
+
+        for (int row = startPointToggle[1]; row < finishPointToggle[0]; row++) {
+            for (int column = startPointToggle[1]; column < finishPointToggle[1]; column++) {
+                expectedGrid[row][column].toggle();
+            }
+        }
+        assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
+    }
 }
