@@ -25,4 +25,20 @@ public class GridTest {
         }
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
     }
+
+    @Test
+    void check_all_lights_in_grid_are_turned_on() {
+        Grid grid = new Grid();
+        Light[][] actualGrid = grid.create(2, 2);
+        grid.turnOnLights(actualGrid);
+        Light[][] expectedGrid = new Light[2][2];
+        for (int row = 0; row < expectedGrid.length; row++) {
+            for (int column = 0; column < expectedGrid[row].length; column++) {
+                Light light = new Light();
+                light.turnOn();
+                expectedGrid[row][column] = light;
+            }
+        }
+        assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
+    }
 }
