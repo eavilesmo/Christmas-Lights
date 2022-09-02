@@ -50,7 +50,17 @@ public class Main {
         matrixOfLights = grid.turnOnLights(matrixOfLights, startPosition8, finishPosition8);
 
         int lightsOn = grid.countLightsOn(matrixOfLights);
-        System.out.println(lightsOn +" lights are on");
+        System.out.println(lightsOn + " lights are on");
+
+        Light[][] nexMatrix = grid.create(10, 10);
+        int[] start = {1,3};
+        int[] finish = {3,6};
+        nexMatrix = grid.turnOnLights(nexMatrix, start, finish);
+        nexMatrix = grid.turnOffLights(nexMatrix, start, finish);
+        nexMatrix = grid.toggleLights(nexMatrix, start, finish);
+
+        int lightsOnTest = grid.countLightsOn(nexMatrix);
+        System.out.println(lightsOnTest + " lights are on");
 
     }
 }
