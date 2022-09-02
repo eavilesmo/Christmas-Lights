@@ -23,6 +23,7 @@ public class GridTest {
                 expectedGrid[row][column] = light;
             }
         }
+
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
     }
 
@@ -30,7 +31,9 @@ public class GridTest {
     void check_all_lights_in_grid_are_turned_on() {
         Grid grid = new Grid();
         Light[][] actualGrid = grid.create(2, 2);
-        grid.turnOnLights(actualGrid);
+        int[] startPoint = {0,0};
+        int[] finishPoint = {2,2};
+        actualGrid = grid.turnOnLights(actualGrid, startPoint, finishPoint);
         Light[][] expectedGrid = new Light[2][2];
         for (int row = 0; row < expectedGrid.length; row++) {
             for (int column = 0; column < expectedGrid[row].length; column++) {
@@ -39,6 +42,32 @@ public class GridTest {
                 expectedGrid[row][column] = light;
             }
         }
+
+        assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
+    }
+
+    @Test
+    void check_that_only_certain_lights_are_on(){
+        Grid grid = new Grid();
+        Light[][] actualGrid = grid.create(10, 10);
+        int[] startPoint = {3,5};
+        int[] finishPoint = {4,7};
+        grid.turnOnLights(actualGrid, startPoint, finishPoint);
+
+        Light[][] expectedGrid = new Light[10][10];
+        for (int row = 0; row < expectedGrid.length; row++) {
+            for (int column = 0; column < expectedGrid[row].length; column++) {
+                Light light = new Light();
+                expectedGrid[row][column] = light;
+            }
+        }
+
+        for (int row = startPoint[0]; row < finishPoint[0]; row++) {
+            for (int column = startPoint[1]; column < finishPoint[1]; column++) {
+                expectedGrid[row][column].turnOn();
+            }
+        }
+
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
     }
 }

@@ -11,10 +11,10 @@ public class Grid {
         return matrix;
     }
 
-    public Light[][] turnOnLights(Light[][] matrix) {
-        for (Light[] listOfLights : matrix) {
-            for (Light light : listOfLights) {
-                light.turnOn();
+    public Light[][] turnOnLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
+        for (int row = startPosition[0]; row < finishPosition[0]; row++) {
+            for (int column = startPosition[1]; column < finishPosition[1]; column++) {
+                matrix[row][column].turnOn();
             }
         }
         return matrix;
