@@ -45,9 +45,9 @@ public class Main {
         matrixOfLights = grid.toggleLights(matrixOfLights, startPosition7, finishPosition7);
 
         // toggle 831,394 through 904,860
-        int[] startPoint8 = {831,394};
-        int[] finishPoint8 = {904,860};
-        matrixOfLights = grid.toggleLights(matrixOfLights, startPoint8, finishPoint8);
+        int[] startPosition8 = {831,394};
+        int[] finishPosition8 = {904,860};
+        matrixOfLights = grid.toggleLights(matrixOfLights, startPosition8, finishPosition8);
 
 
         int lightsOn = grid.countLightsOn(matrixOfLights);
