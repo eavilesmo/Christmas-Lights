@@ -49,6 +49,7 @@ public class Main {
         int[] finishPoint8 = {904,860};
         matrixOfLights = grid.turnOnLights(matrixOfLights, startPoint8, finishPoint8);
 
+
         int lightsOn = 0;
         for (int row = 0; row < matrixOfLights.length; row++) {
             for (int column = 0; column < matrixOfLights[row].length; column++) {

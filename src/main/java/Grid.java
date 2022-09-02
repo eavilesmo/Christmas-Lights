@@ -12,27 +12,57 @@ public class Grid {
     }
 
     public Light[][] turnOnLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
-        for (int row = startPosition[0]; row < finishPosition[0]; row++) {
-            for (int column = startPosition[1]; column < finishPosition[1]; column++) {
-                matrix[row][column].turnOn();
+        for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
+            if (row == startPosition[0] && finishPosition[0] != row){
+                for (int column = startPosition[1]; column < matrix[row].length; column++) {
+                    matrix[row][column].turnOn();
+                }
+            } else if (row == finishPosition[0]){
+                for (int column = 0; column <= finishPosition[1]; column++) {
+                    matrix[row][column].turnOn();
+                }
+            } else {
+                for (int column = 0; column < matrix[row].length; column++) {
+                    matrix[row][column].turnOn();
+                }
             }
         }
         return matrix;
     }
 
     public Light[][] turnOffLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
-        for (int row = startPosition[0]; row < finishPosition[0]; row++) {
-            for (int column = startPosition[1]; column < finishPosition[1]; column++) {
-                matrix[row][column].turnOff();
+        for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
+            if (row == startPosition[0] && finishPosition[0] != row){
+                for (int column = startPosition[1]; column < matrix[row].length; column++) {
+                    matrix[row][column].turnOff();
+                }
+            } else if (row == finishPosition[0]){
+                for (int column = 0; column <= finishPosition[1]; column++) {
+                    matrix[row][column].turnOff();
+                }
+            } else {
+                for (int column = 0; column < matrix[row].length; column++) {
+                    matrix[row][column].turnOff();
+                }
             }
         }
         return matrix;
     }
 
     public Light[][] toggleLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
-        for (int row = startPosition[0]; row < finishPosition[0]; row++) {
-            for (int column = startPosition[1]; column < finishPosition[1]; column++) {
-                matrix[row][column].toggle();
+        for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
+            if (row == startPosition[0] && finishPosition[0] != row){
+                for (int column = startPosition[1]; column < matrix[row].length; column++) {
+                    matrix[row][column].toggle();
+                }
+            } else if (row == finishPosition[0]){
+                for (int column = 0; column <= finishPosition[1]; column++) {
+                    matrix[row][column].toggle();
+                }
+            } else {
+                for (int column = 0; column < matrix[row].length; column++) {
+                    matrix[row][column].toggle();
+                }
             }
         }
         return matrix;
