@@ -67,4 +67,16 @@ public class Grid {
         }
         return matrix;
     }
+
+    public int countLightsOn(Light[][] matrix) {
+        int lightsOn = 0;
+        for (int row = 0; row < matrix.length; row++) {
+            for (int column = 0; column < matrix[row].length; column++) {
+                if (matrix[row][column].isOn) {
+                    lightsOn++;
+                }
+            }
+        }
+        return lightsOn;
+    }
 }

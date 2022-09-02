@@ -174,4 +174,16 @@ public class GridTest {
         }
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
     }
+
+    @Test
+    void check_that_count_lights_on_method_works_correctly() {
+        Grid grid = new Grid();
+        Light[][] matrix = grid.create(10, 10);
+        int[] startPosition = {1,3};
+        int[] finishPosition = {3,6};
+        matrix = grid.turnOnLights(matrix, startPosition, finishPosition);
+        int actualLightsOn = grid.countLightsOn(matrix);
+        int expectedLightsOn = 24;
+        assertThat(actualLightsOn).isEqualTo(expectedLightsOn);
+    }
 }
