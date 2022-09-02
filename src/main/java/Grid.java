@@ -19,4 +19,13 @@ public class Grid {
         }
         return matrix;
     }
+
+    public Light[][] turnOffLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
+        for (int row = startPosition[0]; row < finishPosition[0]; row++) {
+            for (int column = startPosition[1]; column < finishPosition[1]; column++) {
+                matrix[row][column].turnOff();
+            }
+        }
+        return matrix;
+    }
 }

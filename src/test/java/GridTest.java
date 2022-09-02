@@ -70,4 +70,34 @@ public class GridTest {
 
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
     }
+
+    @Test
+    void check_that_only_certain_lights_are_off() {
+        Grid grid = new Grid();
+        Light[][] actualGrid = grid.create(10, 10);
+        int[] startPointOn = {0,0};
+        int[] finishPointOn = {10,10};
+        grid.turnOnLights(actualGrid, startPointOn, finishPointOn);
+
+        int[] startPointOff = {1,2};
+        int[] finishPointOff = {6,7};
+        grid.turnOffLights(actualGrid, startPointOff, finishPointOff);
+
+        Light[][] expectedGrid = new Light[10][10];
+        for (int row = 0; row < expectedGrid.length; row++) {
+            for (int column = 0; column < expectedGrid[row].length; column++) {
+                Light light = new Light();
+                light.turnOn();
+                expectedGrid[row][column] = light;
+            }
+        }
+
+        for (int row = startPointOff[1]; row < finishPointOff[0]; row++) {
+            for (int column = startPointOff[1]; column < finishPointOff[1]; column++) {
+                expectedGrid[row][column].turnOff();
+            }
+        }
+
+        assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
+    }
 }
