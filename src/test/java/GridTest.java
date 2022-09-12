@@ -12,7 +12,8 @@ public class GridTest {
         Light[][] expectedGrid = createExpectedGrid(2, 2, areLightsOn);
 
         // act
-        Light[][] actualGrid = grid.create();
+        grid.create();
+        Light[][] actualGrid = grid.getLightsMatrix();
 
         // assert
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
@@ -30,7 +31,8 @@ public class GridTest {
         int[] finishPosition = {1,1};
 
         // act
-        Light[][] actualGrid = grid.turnOnLights(startPosition, finishPosition);
+        grid.turnOnLights(startPosition, finishPosition);
+        Light[][] actualGrid = grid.getLightsMatrix();
 
         // assert
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
@@ -55,7 +57,8 @@ public class GridTest {
         grid.create();
 
         // act
-        Light[][] actualGrid = grid.turnOnLights(startPosition, finishPosition);
+        grid.turnOnLights(startPosition, finishPosition);
+        Light[][] actualGrid = grid.getLightsMatrix();
 
         // assert
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
@@ -83,7 +86,8 @@ public class GridTest {
         grid.turnOnLights(startPositionOn, finishPositionOn);
 
         // act
-        Light[][] actualGrid = grid.turnOffLights(startPositionOff, finishPositionOff);
+        grid.turnOffLights(startPositionOff, finishPositionOff);
+        Light[][] actualGrid = grid.getLightsMatrix();
 
         // assert
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
@@ -91,15 +95,13 @@ public class GridTest {
 
     @Test
     void check_that_toggle_function_works_correctly() {
-        Grid grid = new Grid(10, 10);
-        grid.create();
+        // arrange
         int[] startPositionOn = {3,3};
         int[] finishPositionOn = {5,5};
-        grid.turnOnLights(startPositionOn, finishPositionOn);
+
 
         int[] startPositionToggle = {2,2};
         int[] finishPositionToggle = {4,4};
-        Light[][] actualGrid = grid.toggleLights(startPositionToggle, finishPositionToggle);
 
         boolean areLightsOn = false;
         Light[][] expectedGrid = createExpectedGrid(10, 10, areLightsOn);
@@ -115,6 +117,16 @@ public class GridTest {
                 expectedGrid[row][column].toggle();
             }
         }
+
+        Grid grid = new Grid(10, 10);
+        grid.create();
+        grid.turnOnLights(startPositionOn, finishPositionOn);
+
+        // act
+        grid.toggleLights(startPositionToggle, finishPositionToggle);
+        Light[][] actualGrid = grid.getLightsMatrix();
+
+        // assert
         assertThat(actualGrid).usingRecursiveFieldByFieldElementComparator().isEqualTo(expectedGrid);
     }
 
