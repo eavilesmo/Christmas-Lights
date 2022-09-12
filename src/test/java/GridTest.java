@@ -47,11 +47,7 @@ public class GridTest {
         boolean areLightsOn = false;
         Light[][] expectedGrid = createExpectedGrid(10, 10, areLightsOn);
 
-        for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
-            for (int column = startPosition[1]; column <= finishPosition[1]; column++) {
-                expectedGrid[row][column].turnOn();
-            }
-        }
+        expectedGrid = turnOnExpectedGrid(expectedGrid, startPosition, finishPosition);
 
         Grid grid = new Grid(10, 10);
         grid.create();
@@ -75,11 +71,7 @@ public class GridTest {
         boolean areLightsOn = true;
         Light[][] expectedGrid = createExpectedGrid(10, 10, areLightsOn);
 
-        for (int row = startPositionOff[0]; row <= finishPositionOff[0]; row++) {
-            for (int column = startPositionOff[1]; column <= finishPositionOff[1]; column++) {
-                expectedGrid[row][column].turnOff();
-            }
-        }
+        expectedGrid = turnOffExpectedGrid(expectedGrid, startPositionOff, finishPositionOff);
 
         Grid grid = new Grid(10, 10);
         grid.create();
@@ -106,17 +98,8 @@ public class GridTest {
         boolean areLightsOn = false;
         Light[][] expectedGrid = createExpectedGrid(10, 10, areLightsOn);
 
-        for (int row = startPositionOn[1]; row <= finishPositionOn[0]; row++) {
-            for (int column = startPositionOn[1]; column <= finishPositionOn[1]; column++) {
-                expectedGrid[row][column].turnOn();
-            }
-        }
-
-        for (int row = startPositionToggle[1]; row <= finishPositionToggle[0]; row++) {
-            for (int column = startPositionToggle[1]; column <= finishPositionToggle[1]; column++) {
-                expectedGrid[row][column].toggle();
-            }
-        }
+        expectedGrid = turnOnExpectedGrid(expectedGrid, startPositionOn, finishPositionOn);
+        expectedGrid = toggleExpectedGrid(expectedGrid, startPositionToggle, finishPositionToggle);
 
         Grid grid = new Grid(10, 10);
         grid.create();
@@ -164,6 +147,33 @@ public class GridTest {
                     Light light = new Light();
                     expectedGrid[row][column] = light;
                 }
+            }
+        }
+        return expectedGrid;
+    }
+
+    private Light[][] turnOnExpectedGrid(Light[][] expectedGrid, int[] startPosition, int[] finishPosition) {
+        for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
+            for (int column = startPosition[1]; column <= finishPosition[1]; column++) {
+                expectedGrid[row][column].turnOn();
+            }
+        }
+        return expectedGrid;
+    }
+
+    private Light[][] turnOffExpectedGrid(Light[][] expectedGrid, int[] startPositionOff, int[] finishPositionOff) {
+        for (int row = startPositionOff[0]; row <= finishPositionOff[0]; row++) {
+            for (int column = startPositionOff[1]; column <= finishPositionOff[1]; column++) {
+                expectedGrid[row][column].turnOff();
+            }
+        }
+        return expectedGrid;
+    }
+
+    private Light[][] toggleExpectedGrid(Light[][] expectedGrid, int[] startPositionToggle, int[] finishPositionToggle) {
+        for (int row = startPositionToggle[1]; row <= finishPositionToggle[0]; row++) {
+            for (int column = startPositionToggle[1]; column <= finishPositionToggle[1]; column++) {
+                expectedGrid[row][column].toggle();
             }
         }
         return expectedGrid;
