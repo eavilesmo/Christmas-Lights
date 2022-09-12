@@ -1,7 +1,17 @@
 public class Grid {
 
-    public Light[][] create(int rows, int columns) {
-        Light[][] matrix = new Light[rows][columns];
+    private int rows = 0;
+    private int columns = 0;
+
+    public Grid(int rows, int columns) {
+        this.rows = rows;
+        this.columns = columns;
+    }
+
+    private Light[][] matrix;
+
+    public Light[][] create() {
+        matrix = new Light[rows][columns];
         for (int row = 0; row < matrix.length; row++) {
             for (int column = 0; column < matrix[row].length; column++) {
                 Light light = new Light();
@@ -11,7 +21,7 @@ public class Grid {
         return matrix;
     }
 
-    public Light[][] turnOnLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
+    public Light[][] turnOnLights(int[] startPosition, int[] finishPosition) {
         for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
             for (int column = startPosition[1]; column <= finishPosition[1]; column++) {
                 matrix[row][column].turnOn();
@@ -20,7 +30,7 @@ public class Grid {
         return matrix;
     }
 
-    public Light[][] turnOffLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
+    public Light[][] turnOffLights(int[] startPosition, int[] finishPosition) {
         for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
             for (int column = startPosition[1]; column <= finishPosition[1]; column++) {
                 matrix[row][column].turnOff();
@@ -29,7 +39,7 @@ public class Grid {
         return matrix;
     }
 
-    public Light[][] toggleLights(Light[][] matrix, int[] startPosition, int[] finishPosition) {
+    public Light[][] toggleLights(int[] startPosition, int[] finishPosition) {
         for (int row = startPosition[0]; row <= finishPosition[0]; row++) {
             for (int column = startPosition[1]; column <= finishPosition[1]; column++) {
                 matrix[row][column].toggle();
@@ -38,7 +48,7 @@ public class Grid {
         return matrix;
     }
 
-    public int countLightsOn(Light[][] matrix) {
+    public int countLightsOn() {
         int lightsOn = 0;
         for (Light[] listOfLights : matrix) {
             for (Light light : listOfLights) {
